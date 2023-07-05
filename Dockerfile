@@ -16,7 +16,7 @@ FROM openjdk:11-jre-slim
 WORKDIR /app
 
 # Copy the application artifact from the builder stage
-COPY --from=builder /app/target/my-app.jar .
+COPY --from=builder /app/target/my-app-*.jar .
 
 # Run the application
-CMD ["java", "-jar", "my-app.jar"]
+CMD ["java", "-jar", "my-app-*.jar"]
