@@ -18,8 +18,5 @@ WORKDIR /app
 # Copy the application artifact from the builder stage
 COPY --from=builder /app/target/my-app.jar .
 
-# Expose the application port (if necessary)
-EXPOSE 8080
-
 # Run the application
 CMD ["java", "-jar", "my-app.jar"]
