@@ -1,5 +1,5 @@
 # Stage 1: Build the application with Maven
-FROM maven:3.8.4-openjdk-11 AS builder
+FROM maven:latest AS builder
 
 WORKDIR /app
 
