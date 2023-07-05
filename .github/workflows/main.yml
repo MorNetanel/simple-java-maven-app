@@ -69,7 +69,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/github_project:${{ env.NEW_VERSION }}
           
-          #Test
+          #Test ...
 
 
 
