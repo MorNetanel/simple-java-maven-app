@@ -11,7 +11,10 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println(MESSAGE);
-        System.out.println("Hello");
+
+        System.out.println("Hello Nati");
+        System.out.println("<version>1.2.5</version>");
+        
     }
 
     public String getMessage() {
