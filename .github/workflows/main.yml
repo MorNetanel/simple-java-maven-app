@@ -69,7 +69,14 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/github_project:${{ env.NEW_VERSION }}
           
-          #Test ....
+      - uses: repo-sync/pull-request@v2
+        name: pull-request
+        with:
+         destination_branch: "master"
+         pr_body: "👑 *An automated PR*"
+         pr_reviewer: "kingdonb"
+         pr_draft: true
+         github_token: ${{ secrets.GITHUB_TOKEN }}
 
 
 
