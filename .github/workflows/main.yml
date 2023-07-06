@@ -73,8 +73,8 @@ jobs:
         name: pull-request
         with:
          destination_branch: "master"
-         pr_body: "👑 *An automated PR*"
-         pr_reviewer: "kingdonb"
+         pr_body: "*An automated PR*"
+         pr_reviewer: "Nati Mor"
          pr_draft: true
          github_token: ${{ secrets.GITHUB_TOKEN }}
 
