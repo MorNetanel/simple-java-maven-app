@@ -11,33 +11,15 @@ jobs:
 
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.2
-        with:
-          ssh-private-key: ${{ secrets.PEM_FILE }}
-          
-      - name: Install SSH client
-        run: sudo apt-get install openssh-client -y
-
-      - name: Connect to Remote VM
+      - uses: actions/checkout@v2 
+      - name: Deploy in EC2
+        env:
+            PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
+            HOSTNAME : ${{ secrets.EC2_IP  }}
+            USER_NAME : ${{ secrets.EC2_USER_NAME  }}
+            
         run: |
-          echo "$PEM_FILE" > remote.pem
-          chmod 400 remote.pem
-          ssh -i remote.pem ubuntu@44.215.50.118 "echo 'Connected to VM'; ls ~"
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
           
-
-      - name: SSH into VM
-        uses: appleboy/ssh-action@master
-        with:
-          host: 44.215.50.118
-          username: ubuntu
-          key: ${{ secrets.PEM_FILE }}
-          script: |
-            # Run commands on the VM after connecting
-            echo "Connected to VM"
-            # Example command: list files in the home directory
-            ls ~
-
+            #Now we have got the access of EC2 and we will start the deploy .
