@@ -14,10 +14,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Use the PEM file secret
-        env:
-          PEM_FILE: ${{ secrets.EC2PEM }}
-        run: |
-          ssh ubuntu@44.215.50.118
-          mkdir test1
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.2
+        with:
+          ssh-private-key: ${{ secrets.EC2PEM }}
+
+      - name: SSH into VM
+        uses: appleboy/ssh-action@master
+        with:
+          host: <44.215.50.118>
+          username: <ubuntu>
+          key: ${{ secrets.PEM_FILE }}
+          script: |
+            # Run commands on the VM after connecting
+            echo "Connected to VM"
+            # Example command: list files in the home directory
+            ls ~
 
