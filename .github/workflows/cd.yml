@@ -9,8 +9,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Use the PEM file secret
+        env:
+          PEM_FILE: ${{ secrets.EC2PEM }}
         run: |
-          ssh -i secrets.EC2PEM ubuntu@44.215.50.118
+          ssh ubuntu@44.215.50.118
           mkdir test1
+
