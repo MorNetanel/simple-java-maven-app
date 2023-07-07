@@ -24,7 +24,7 @@ jobs:
         with:
           host: <44.215.50.118>
           username: <ubuntu>
-          key: ${{ secrets.PEM_FILE }}
+          key: ${{ secrets.EC2PEM }}
           script: |
             # Run commands on the VM after connecting
             echo "Connected to VM"
