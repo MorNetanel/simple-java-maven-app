@@ -18,6 +18,20 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.2
         with:
           ssh-private-key: ${{ secrets.EC2PEM }}
+          
+      - name: Install SSH client
+        run: sudo apt-get install openssh-client -y
+
+      - name: Connect to Remote VM
+        env:
+          VM_HOST: <44.215.50.118>
+          VM_USERNAME: <ubuntu>
+          PEM_FILE: ${{ secrets.EC2PEM }}
+        run: |
+          echo "$PEM_FILE" > remote.pem
+          chmod 400 remote.pem
+          ssh -i remote.pem $VM_USERNAME@$VM_HOST "echo 'Connected to VM'; ls ~"
+          
 
       - name: SSH into VM
         uses: appleboy/ssh-action@master
