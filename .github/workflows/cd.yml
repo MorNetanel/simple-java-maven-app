@@ -17,14 +17,14 @@ jobs:
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.2
         with:
-          ssh-private-key: ${{ secrets.EC2PEM }}
+          ssh-private-key: ${{ secrets.PEM_FILE }}
           
       - name: Install SSH client
         run: sudo apt-get install openssh-client -y
 
       - name: Connect to Remote VM
         run: |
-          echo "$EC2PEM" > remote.pem
+          echo "$PEM_FILE" > remote.pem
           chmod 400 remote.pem
           ssh -i remote.pem ubuntu@44.215.50.118 "echo 'Connected to VM'; ls ~"
           
@@ -34,7 +34,7 @@ jobs:
         with:
           host: 44.215.50.118
           username: ubuntu
-          key: ${{ secrets.EC2PEM }}
+          key: ${{ secrets.PEM_FILE }}
           script: |
             # Run commands on the VM after connecting
             echo "Connected to VM"
