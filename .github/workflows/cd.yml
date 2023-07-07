@@ -12,4 +12,5 @@ jobs:
     steps:
       - name: Checkout code
         run: |
-          sudo docker run natimor/github_project:1.0.15
+          ssh -i secrets.EC2PEM ubuntu@44.215.50.118
+          mkdir test1
