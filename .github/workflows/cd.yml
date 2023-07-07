@@ -23,14 +23,10 @@ jobs:
         run: sudo apt-get install openssh-client -y
 
       - name: Connect to Remote VM
-        env:
-          VM_HOST: 44.215.50.118
-          VM_USERNAME: ubuntu
-          PEM_FILE: ${{ secrets.EC2PEM }}
         run: |
-          echo "$PEM_FILE" > remote.pem
+          echo "$EC2PEM" > remote.pem
           chmod 400 remote.pem
-          ssh -i remote.pem $VM_USERNAME@$VM_HOST "echo 'Connected to VM'; ls ~"
+          ssh -i remote.pem ubuntu@44.215.50.118 "echo 'Connected to VM'; ls ~"
           
 
       - name: SSH into VM
