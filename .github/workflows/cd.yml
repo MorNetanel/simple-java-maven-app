@@ -24,8 +24,8 @@ jobs:
 
       - name: Connect to Remote VM
         env:
-          VM_HOST: <44.215.50.118>
-          VM_USERNAME: <ubuntu>
+          VM_HOST: 44.215.50.118
+          VM_USERNAME: ubuntu
           PEM_FILE: ${{ secrets.EC2PEM }}
         run: |
           echo "$PEM_FILE" > remote.pem
@@ -36,8 +36,8 @@ jobs:
       - name: SSH into VM
         uses: appleboy/ssh-action@master
         with:
-          host: <44.215.50.118>
-          username: <ubuntu>
+          host: 44.215.50.118
+          username: ubuntu
           key: ${{ secrets.EC2PEM }}
           script: |
             # Run commands on the VM after connecting
