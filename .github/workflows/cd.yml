@@ -28,8 +28,7 @@ jobs:
             touch /home/ubuntu/version
             grep -m 1 -oP '<version>\K[^<]+' simple-java-maven-app/pom.xml > version
             cat version
-            # VERSION=$(cat /home/ubuntu/version)
-            # echo $VERSION
+            echo "$(cat version)"
             sudo docker run natimor/github_project:"$(cat version)"
             "
             
