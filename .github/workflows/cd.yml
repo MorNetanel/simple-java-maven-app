@@ -23,4 +23,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
             # Commands to run on the EC2 instance
             cd /home/ubuntu
+            touch version_log
+            echo {{ env.NEW_VERSION }} >> version_log
             sudo docker run natimor/github_project:${{ env.NEW_VERSION }}'
