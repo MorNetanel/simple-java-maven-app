@@ -27,6 +27,7 @@ jobs:
             git clone https://github.com/MorNetanel/simple-java-maven-app.git
             grep -m 1 -oP '<version>\K[^<]+' simple-java-maven-app/pom.xml > version
             VERSION=$(cat version)
+            echo $VERSION
             sudo docker run natimor/github_project:$VERSION
             "
             
