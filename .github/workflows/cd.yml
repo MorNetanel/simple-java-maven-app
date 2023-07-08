@@ -24,7 +24,8 @@ jobs:
             # Commands to run on the EC2 instance
             cd /home/ubuntu
             git clone https://github.com/MorNetanel/simple-java-maven-app.git
-            grep -oP '<version>\K[^<]+' /home/ubuntu/simple-java-maven-app/pom.xml 
+            version=$(grep -m 1 -oP '<version>\K[^<]+' simple-java-maven-app/pom.xml)
+            sudo docker run natimor/github_project:${version}
             '
             
           
