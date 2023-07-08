@@ -23,6 +23,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
             # Commands to run on the EC2 instance
             cd /home/ubuntu
+            rm -rf simple-java-maven-app
             git clone https://github.com/MorNetanel/simple-java-maven-app.git
             version=$(grep -m 1 -oP '<version>\K[^<]+' simple-java-maven-app/pom.xml)
             sudo docker run natimor/github_project:${version}
