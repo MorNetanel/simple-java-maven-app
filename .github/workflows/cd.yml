@@ -25,7 +25,9 @@ jobs:
             cd /home/ubuntu/
             rm -rf simple-java-maven-app
             git clone https://github.com/MorNetanel/simple-java-maven-app.git
-            grep -m 1 -oP '<version>\K[^<]+' simple-java-maven-app/pom.xml >> version
+            grep -m 1 -oP '<version>\K[^<]+' simple-java-maven-app/pom.xml > version
+            VERSION=$(cat version)
+            sudo docker run natimor/github_project:$VERSION
             "
             
           
