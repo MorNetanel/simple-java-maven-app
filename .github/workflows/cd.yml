@@ -23,9 +23,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
             # Commands to run on the EC2 instance
             cd /home/ubuntu
-            version=$(cat artifacts/GITHUB_ENV | grep "NEW_VERSION=" | sed -e "s/NEW_VERSION=//")
-            echo "The version is $version"
-            version=${{ env.NEW_VERSION }}
-            echo "The version is $version"
-            echo ${{ env.NEW_VERSION }} >> version_log
-            sudo docker run natimor/github_project:${{ env.NEW_VERSION }}'
+            git fetch https://github.com/MorNetanel/simple-java-maven-app.git '
+            
+          
