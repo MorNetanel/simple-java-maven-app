@@ -1,22 +1,11 @@
-# Stage 1: Build the application with Maven
 FROM maven:latest AS builder
-
 WORKDIR /app
-
-# Copy the Maven project files
 COPY pom.xml .
 COPY src ./src
-
-# Build the application
 RUN mvn clean package
 
-# Stage 2: Create a lightweight image with the application artifact
 FROM openjdk:11-jre-slim
-
 WORKDIR /app
+COPY --from=builder /app/target/my-app-*.jar /app/my-app.jar
+CMD ["java", "-jar", "/app/my-app.jar"]
 
-# Copy the application artifact from the builder stage
-COPY --from=builder /app/target/my-app-*.jar .
-
-# Run the application
-CMD sh -c "java", "-jar", "my-app-*.jar"
