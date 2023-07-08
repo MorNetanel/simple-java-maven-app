@@ -24,8 +24,7 @@ jobs:
             # Commands to run on the EC2 instance
             cd /home/ubuntu
             git clone https://github.com/MorNetanel/simple-java-maven-app.git
-            touch version
-            grep -oP '<version>\K[^<]+' /home/ubuntu/simple-java-maven-app/pom.xml >> version
+            grep -oP '<version>\K[^<]+' /home/ubuntu/simple-java-maven-app/pom.xml 
             '
             
           
