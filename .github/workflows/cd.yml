@@ -29,7 +29,7 @@ jobs:
             grep -m 1 -oP '<version>\K[^<]+' simple-java-maven-app/pom.xml > version
             cat version
             echo "$(cat version)"
-            sudo docker run natimor/github_project:"$(cat version)"
+            sudo docker run natimor/github_project:$(cat version)
             "
             
           
