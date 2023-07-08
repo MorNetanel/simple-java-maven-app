@@ -23,6 +23,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
             # Commands to run on the EC2 instance
             cd /home/ubuntu
-            git fetch https://github.com/MorNetanel/simple-java-maven-app.git '
+            git clone https://github.com/MorNetanel/simple-java-maven-app.git '
             
           
