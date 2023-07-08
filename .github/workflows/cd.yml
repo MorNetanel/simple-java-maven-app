@@ -17,10 +17,11 @@ jobs:
             PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
             HOSTNAME : ${{ secrets.EC2_IP  }}
             USER_NAME : ${{ secrets.EC2_USER_NAME  }}
-            
+
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} 
-        
-            
-      
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+            # Commands to run on the EC2 instance
+            cd /home/ubuntu
+            touch test1
+            echo "test1" >> test1'
