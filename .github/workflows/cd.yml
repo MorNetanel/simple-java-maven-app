@@ -25,6 +25,8 @@ jobs:
            script: |
              sudo apt update
              sudo docker rm $(sudo docker ps -aq)
+             echo 1 ${{ env.GITHUB_TAG }}
+             echo 2 $GITHUB_TAG
              sudo docker run -d ${{ secrets.DOCKERHUB_USERNAME }}/github_project:${{ env.GITHUB_TAG }}
 
             
