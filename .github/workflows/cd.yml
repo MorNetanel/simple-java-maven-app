@@ -11,21 +11,15 @@ jobs:
 
 
     steps:
-      - uses: actions/checkout@v2 
-      - name: Deploy in EC2
-        env:
-            PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
-            HOSTNAME : ${{ secrets.EC2_IP  }}
-            USER_NAME : ${{ secrets.EC2_USER_NAME  }}
+       - name: executing remote ssh commands using password
+         uses: appleboy/ssh-action@v0.1.10
+         with:
+           host: ${{ secrets.EC2_IP }}
+           username: ${{ secrets.EC2_USER_NAME }}
+           key: ${{ secrets.AWS_PRIVATE_KEY }}
+           script: |
+             sudo apt update
+             sudo docker run -d natimor/github_project:1.2.64
 
-        run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          git clone https://github.com/MorNetanel/simple-java-maven-app.git
-          echo "GITHUB_TAG=$(grep -m 1 -oP '<version>\K[^<]+' simple-java-maven-app/pom.xml) >> $GITHUB_ENV
-          ssh -o StrictHostKeyChecking=no -i ${{ env.PRIVATE_KEY }} ${{ env.USER_NAME }}@${{ env.HOSTNAME }} "
-            # Commands to run on the EC2 instance
-            sudo docker run natimor/github_project:"${{ env.GITHUB_TAG }}"
-            "
-            #Test
             
           
