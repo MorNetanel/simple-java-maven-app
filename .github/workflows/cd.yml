@@ -27,6 +27,7 @@ jobs:
             #rm -rf simple-java-maven-app
             #git clone https://github.com/MorNetanel/simple-java-maven-app.git
             #touch /home/ubuntu/version
+            touch /home/ubuntu/test_aviv
             #grep -m 1 -oP '<version>\K[^<]+' simple-java-maven-app/pom.xml > /home/ubuntu/version
             #cat /home/ubuntu/version
             #VERSION=$(cat /home/ubuntu/version)
