@@ -24,14 +24,6 @@ jobs:
           echo "GITHUB_TAG=$(grep -m 1 -oP '<version>\K[^<]+' simple-java-maven-app/pom.xml) >> $GITHUB_ENV
           ssh -o StrictHostKeyChecking=no -i ${{ env.PRIVATE_KEY }} ${{ env.USER_NAME }}@${{ env.HOSTNAME }} "
             # Commands to run on the EC2 instance
-            #rm -rf simple-java-maven-app
-            #git clone https://github.com/MorNetanel/simple-java-maven-app.git
-            #touch /home/ubuntu/version
-            touch /home/ubuntu/test_aviv
-            #grep -m 1 -oP '<version>\K[^<]+' simple-java-maven-app/pom.xml > /home/ubuntu/version
-            #cat /home/ubuntu/version
-            #VERSION=$(cat /home/ubuntu/version)
-            #echo "$VERSION"
             sudo docker run natimor/github_project:"${{ env.GITHUB_TAG }}"
             "
             #Test
