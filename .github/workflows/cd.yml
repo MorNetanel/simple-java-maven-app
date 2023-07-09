@@ -11,6 +11,11 @@ jobs:
 
 
     steps:
+       - name: fetch jar
+         uses: actions/checkout@v3
+       - name: extract version
+         run: echo "GITHUB_TAG=$(grep -m 1 -oP '<version>\K[^<]+' simple-java-maven-app/pom.xml) >> $GITHUB_ENV
+       
        - name: executing remote ssh commands using password
          uses: appleboy/ssh-action@v0.1.10
          with:
@@ -19,7 +24,8 @@ jobs:
            key: ${{ secrets.AWS_PRIVATE_KEY }}
            script: |
              sudo apt update
-             sudo docker run -d natimor/github_project:1.2.64
+             sudo docker rm $(sudo docker ps -aq)
+             sudo docker run -d ${{ secrets.DOCKERHUB_USERNAME }}/github_project:${{ env.GITHUB_TAG }}
 
             
           
