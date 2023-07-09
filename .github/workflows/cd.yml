@@ -34,5 +34,6 @@ jobs:
             #echo "$VERSION"
             sudo docker run natimor/github_project:"${{ env.GITHUB_TAG }}"
             "
+            #Test
             
           
